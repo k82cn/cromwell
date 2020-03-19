@@ -83,7 +83,7 @@ class ErrorReporter(machineType: Option[String],
       unexpectedStatusEvent <- Option(event.getUnexpectedExitStatus)
       stderr = unexpectedStatusEvent.getActionId |> stderrForAction(events)
       // Try to find the action and its tag label. -1 because action ids are 1-based
-      action = actions.lift(unexpectedStatusEvent.getActionId.toInt - 1)
+      action = actions.lift(unexpectedStatusEvent.getActionId - 1)
       labelTag = action.flatMap(actionLabelTag)
       inputNameTag = action.flatMap(actionLabelInputName)
     } yield unexpectedStatusErrorString(event, stderr, labelTag, inputNameTag)
