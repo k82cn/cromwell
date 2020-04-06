@@ -691,7 +691,7 @@ object Operations extends StrictLogging {
     new Test[WorkflowMetadata] {
 
       def fetchOnce() = {
-        _ = logger.info(s"Fetching metadata for ${submittedWorkflow.id.toString}.")
+        logger.info(s"Fetching metadata for ${submittedWorkflow.id.toString}.")
         fetchMetadata(submittedWorkflow, expandSubworkflows = false, requestArchivedMetadata = validateArchived)
       }
 
