@@ -697,6 +697,7 @@ object Operations extends StrictLogging {
         validateMetadata(workflow, expectedMetadata).handleErrorWith({ _ =>
           for {
             _ <- IO.sleep(2.seconds)
+            _ = logger.info(s"Metadata is not quite ready for ${submittedWorkflow.id.toString}. Retrying")
             recurse <- eventuallyMetadata(workflow, expectedMetadata)
           } yield recurse
         })
